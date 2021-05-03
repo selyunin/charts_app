@@ -14,8 +14,14 @@ find_package(Qt5 5.15.2 EXACT REQUIRED COMPONENTS Widgets Core Charts)
 
 add_executable(qt_cmake
                main.cpp
-               chartview.cpp)
+               chartview.cpp
+               SdbMainWindow.cpp)
 
-find_library(LIBRARY_NAME PATHS CMAKE_PREFIX_PATH NO_DEFAULT_PATH)
+find_library(LIBRARY_NAME PATHS ${CMAKE_PREFIX_PATH} NO_DEFAULT_PATH)
 
 target_link_libraries(qt_cmake Qt5::Widgets Qt5::Charts)
+
+
+install(TARGETS qt_cmake
+    DESTINATION "/home/selyunin/workspace/github/qt_cmake_install"
+)

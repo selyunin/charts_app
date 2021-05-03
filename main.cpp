@@ -1,5 +1,5 @@
 
-#include "chartview.h"
+
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 #include <QtCharts/QScatterSeries>
@@ -9,6 +9,9 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QPolarChart>
 #include <QtCore/QDebug>
+
+#include "chartview.h"
+#include "SdbMainWindow.h"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -109,7 +112,7 @@ int main(int argc, char *argv[])
     chartView->setChart(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    QMainWindow window;
+    SdbMainWindow window("Sample title", &a);
     window.setCentralWidget(chartView);
     window.resize(800, 600);
     window.show();
