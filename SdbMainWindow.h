@@ -9,6 +9,10 @@ class SdbMainWindow : public QMainWindow {
 public:
     SdbMainWindow(const std::string& title = "", const QApplication* app = nullptr);
 
+    ~SdbMainWindow(){
+        this->ptr_app = nullptr;
+    }
+
     void keyPressEvent(QKeyEvent* event) override;
 
     const QApplication* ptr_app;
