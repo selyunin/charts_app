@@ -53,16 +53,14 @@ add_custom_command(
         ${QT_PATH}/plugins/platforms
         ${PACKAGE_DIR}/plugins/platforms)
 
-
 install(CODE [[
     include(BundleUtilities)
     fixup_bundle("${CMAKE_BINARY_DIR}/app" "" "")
     ]] COMPONENT Runtime
         )
 
-
 install(CODE [[
     include(BundleUtilities)
-    copy_and_fixup_bundle("${CMAKE_BINARY_DIR}/app" "/home/selyunin/workspace/github/qt_port/app" "" "")
+    copy_and_fixup_bundle("${CMAKE_BINARY_DIR}/app" "${CMAKE_BINARY_DIR}/../../qt_port/app" "" "")
     ]] COMPONENT Runtime
         )
