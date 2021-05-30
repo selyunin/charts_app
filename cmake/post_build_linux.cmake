@@ -13,8 +13,8 @@ function(post_build_linux)
     add_custom_command(
             TARGET ${EXECUTABLE} POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_BINARY_DIR}/${EXECUTABLE}.exe
-            ${PACKAGE_DIR}/${EXECUTABLE}.exe)
+            ${CMAKE_BINARY_DIR}/${EXECUTABLE}
+            ${PACKAGE_DIR}/${EXECUTABLE})
 
     add_custom_command(
             TARGET ${EXECUTABLE} POST_BUILD
