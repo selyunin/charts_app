@@ -7,10 +7,10 @@ project(${EXECUTABLE})
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-if (UNIX)
+if(WIN32)
+    set(QT_PATH C:/Qt/5.15.2/mingw81_64/)
+elseif(UNIX)
     set(QT_PATH /opt/Qt/5.15.2/gcc_64/)
-elseif (WIN32)
-    set(QT_PATH C:/Qt/5.15.2/mingw81_64)
 endif()
 
 set(CMAKE_PREFIX_PATH ${QT_PATH})
@@ -28,13 +28,13 @@ elseif(UNIX)
     find_package(Qt5 ${QT_VERSION} EXACT REQUIRED COMPONENTS Core Gui DBus Widgets Charts XcbQpa)
 endif()
 add_executable(${EXECUTABLE} WIN32
-               main.cpp
-               chartview.cpp
-               SdbMainWindow.cpp)
+                src/main.cpp
+                src/chartview.cpp
+                src/SdbMainWindow.cpp)
 
 find_library(LIBRARY_NAME PATHS ${CMAKE_PREFIX_PATH} NO_DEFAULT_PATH)
 
-if(MINGW)
+if(WIN32)
     target_link_libraries(${EXECUTABLE} Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts)
 elseif(UNIX)
     target_link_libraries(${EXECUTABLE} Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::XcbQpa)
