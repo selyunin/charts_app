@@ -21,4 +21,17 @@ function(post_build_linux)
             COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${QT_PATH}/plugins/platforms
             ${PACKAGE_DIR}/plugins/platforms)
+
+    add_custom_command(
+            TARGET ${EXECUTABLE} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy
+            ${QT_PATH}/lib/libQt5XcbQpa.so
+            ${PACKAGE_DIR}/libQt5XcbQpa.so.5)
+
+    add_custom_command(
+            TARGET ${EXECUTABLE} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy
+            ${QT_PATH}/lib/libQt5DBus.so
+            ${PACKAGE_DIR}/libQt5DBus.so.5)
+
 endfunction()
