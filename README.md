@@ -12,6 +12,25 @@ Building on windows with `cmake` (Qt should be installed) is also supported,
 tested on `win10`. Installation bundle does not work on windows, although
 the directory with the compiled executable is portable and can be used as is.
 
+# Docker CI 
+
+The [`Dockerfile`](./Dockerfile) is used to build the CI docker image.
+
+Create image from the `Dockerfile`: 
+```
+docker build -t qt_image .
+```
+
+Create the container with shared volumes:
+```
+docker create -t -i -v /home/selyunin/workspace/github/qt_cmake_docker:/code/ qt_image bash
+```
+
+Start the container:
+```
+docker start -a -i **container_hash_from_previous_step**
+```
+
 
 ## Maintainer
 
