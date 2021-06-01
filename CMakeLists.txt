@@ -25,19 +25,29 @@ if(WIN32)
     set(QT_WIN_COMPONENTS Core Gui DBus Widgets Charts)
     find_package(Qt5 ${QT_VERSION} EXACT REQUIRED COMPONENTS ${QT_WIN_COMPONENTS})
 elseif(UNIX)
-    find_package(Qt5 ${QT_VERSION} EXACT REQUIRED COMPONENTS Core Gui DBus Widgets Charts XcbQpa)
+    find_package(Qt5 ${QT_VERSION} EXACT REQUIRED COMPONENTS Core Gui DBus Widgets Charts XcbQpa Test)
 endif()
+
+include_directories(src)
+
 add_executable(${EXECUTABLE} WIN32
                 src/main.cpp
                 src/chartview.cpp
-                src/SdbMainWindow.cpp)
+        src/main_window.cpp)
+
+add_executable(test WIN32
+        test/test_gui.cpp
+        src/chartview.cpp
+        src/main_window.cpp)
 
 find_library(LIBRARY_NAME PATHS ${CMAKE_PREFIX_PATH} NO_DEFAULT_PATH)
 
 if(WIN32)
     target_link_libraries(${EXECUTABLE} Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts)
+    target_link_libraries(test Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::Test)
 elseif(UNIX)
     target_link_libraries(${EXECUTABLE} Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::XcbQpa)
+    target_link_libraries(test Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::XcbQpa Qt5::Test)
 endif()
 
 set(PACKAGE_DIR "${CMAKE_SOURCE_DIR}/../qt_port")

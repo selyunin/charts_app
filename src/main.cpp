@@ -9,7 +9,7 @@
 #include <QtCore/QDebug>
 
 #include "chartview.h"
-#include "SdbMainWindow.h"
+#include "main_window.h"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
     chartView->setChart(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    SdbMainWindow window("Sample title", &a);
+    main_window window("Sample title", &a);
     window.setCentralWidget(chartView);
     window.resize(800, 600);
     window.show();

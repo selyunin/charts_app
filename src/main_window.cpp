@@ -1,17 +1,17 @@
 #include <QString>
 #include <iostream>
-#include "SdbMainWindow.h"
+#include "main_window.h"
 
 using namespace std;
 
-SdbMainWindow::SdbMainWindow(const std::string& title, const QApplication* app)
+main_window::main_window(const std::string& title, const QApplication* app)
 {
     this->resize(800, 600);
     this->setWindowTitle(QString(title.c_str()));
     this->ptr_app = app;
 }
 
-void SdbMainWindow::keyPressEvent(QKeyEvent* event)
+void main_window::keyPressEvent(QKeyEvent* event)
 {
     auto key_pressed = event->key();
     if (key_pressed == 'Q'){

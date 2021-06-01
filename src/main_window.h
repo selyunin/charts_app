@@ -5,11 +5,11 @@
 #include <QtWidgets/QApplication>
 #include <QtGui/QKeyEvent>
 
-class SdbMainWindow : public QMainWindow {
+class main_window : public QMainWindow {
 public:
-    SdbMainWindow(const std::string& title = "", const QApplication* app = nullptr);
+    main_window(const std::string& title = "", const QApplication* app = nullptr);
 
-    ~SdbMainWindow(){
+    ~main_window(){
         this->ptr_app = nullptr;
     }
 
