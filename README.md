@@ -23,7 +23,7 @@ docker build -t qt_image .
 
 Create the container with shared volumes:
 ```
-docker create -t -i -v /home/selyunin/workspace/github/qt_cmake_docker:/code/ qt_image bash
+docker create -t -i -v /host/directory:/container/directory qt_image bash
 ```
 
 Start the container:
