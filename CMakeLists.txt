@@ -50,7 +50,7 @@ elseif(UNIX)
     target_link_libraries(test Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::XcbQpa Qt5::Test)
 endif()
 
-set(PACKAGE_DIR "${CMAKE_SOURCE_DIR}/../qt_port")
+set(PACKAGE_DIR "${CMAKE_SOURCE_DIR}/../charts_app_lin")
 
 if(WIN32)
     include(${CMAKE_SOURCE_DIR}/cmake/post_build_win32.cmake)

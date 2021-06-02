@@ -8,7 +8,7 @@ function(install_linux)
 
     install(CODE [[
         include(BundleUtilities)
-        copy_and_fixup_bundle("${CMAKE_CURRENT_BINARY_DIR}/app" "${CMAKE_CURRENT_BINARY_DIR}/../../qt_port/app" "" "")
+        copy_and_fixup_bundle("${CMAKE_CURRENT_BINARY_DIR}/app" "${CMAKE_CURRENT_BINARY_DIR}/../../charts_app_lin/app" "" "")
         ]] COMPONENT Runtime
             )
 
