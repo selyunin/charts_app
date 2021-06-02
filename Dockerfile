@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install python3-pip \
                                       libglu1-mesa-dev \
                                       libxkbcommon-x11-dev \
                                       libfontconfig1-dev \
+                                      libxcb-xinerama0 \
                                       fontconfig \
                                       file \
                                       -y
