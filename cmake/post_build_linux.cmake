@@ -34,4 +34,10 @@ function(post_build_linux)
             ${QT_PATH}/lib/libQt5DBus.so
             ${PACKAGE_DIR}/libQt5DBus.so.5)
 
+    add_custom_command(
+            TARGET ${EXECUTABLE} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy
+            /usr/lib/x86_64-linux-gnu/libxcb-xinerama.so.0
+            ${PACKAGE_DIR}/libxcb-xinerama.so.0)
+
 endfunction()
