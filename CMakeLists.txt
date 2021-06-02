@@ -31,8 +31,8 @@ endif()
 include_directories(src)
 
 add_executable(${EXECUTABLE} WIN32
-                src/main.cpp
-                src/chartview.cpp
+        src/main.cpp
+        src/chartview.cpp
         src/main_window.cpp)
 
 add_executable(test WIN32
@@ -50,7 +50,11 @@ elseif(UNIX)
     target_link_libraries(test Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::XcbQpa Qt5::Test)
 endif()
 
-set(PACKAGE_DIR "${CMAKE_SOURCE_DIR}/../charts_app_lin")
+if(WIN32)
+    set(PACKAGE_DIR "${CMAKE_SOURCE_DIR}/../charts_app_win")
+elseif(UNIX)
+    set(PACKAGE_DIR "${CMAKE_SOURCE_DIR}/../charts_app_linux")
+endif()
 
 if(WIN32)
     include(${CMAKE_SOURCE_DIR}/cmake/post_build_win32.cmake)

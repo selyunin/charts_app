@@ -57,7 +57,7 @@ jobs:
         run: |
           pwd
           ls -al
-          cmake --build . --config $BUILD_TYPE
+          cmake --build . --config $BUILD_TYPE -j8
 
       - name: Making portable install bundle
         working-directory: ${{github.workspace}}/build
@@ -65,8 +65,8 @@ jobs:
         # Create portable Linux installation bundle
         run: |
           make install
-          pwd
-          tar czvf charts_app_lin_v${VERSION_ID}.tar.gz ../../charts_app_lin
+          mv ../../charts_app_linux charts_app_linux_v${VERSION_ID}
+          tar czvf charts_app_linux_v${VERSION_ID}.tar.gz charts_app_linux_v${VERSION_ID}
           ls -la
 
       - name: Create release
@@ -77,5 +77,5 @@ jobs:
           prerelease: false
           title: Charts app v${{env.VERSION_ID}}
           files: |
-            ${{github.workspace}}/build/charts_app_lin_v${{env.VERSION_ID}}.tar.gz
+            ${{github.workspace}}/build/charts_app_linux_v${{env.VERSION_ID}}.tar.gz
 
