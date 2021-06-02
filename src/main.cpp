@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
     chartView->setChart(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    main_window window("Sample title", &a);
+    main_window window("Charts app example", &a);
     window.setCentralWidget(chartView);
     window.resize(800, 600);
     window.show();
