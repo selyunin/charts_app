@@ -12,6 +12,18 @@ function(post_build_linux)
 
     add_custom_command(
             TARGET ${EXECUTABLE} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_SOURCE_DIR}/settings
+            ${PACKAGE_DIR}/settings)
+
+    add_custom_command(
+            TARGET ${EXECUTABLE} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_SOURCE_DIR}/settings
+            ${CMAKE_BINARY_DIR}/settings)
+
+    add_custom_command(
+            TARGET ${EXECUTABLE} POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy
             ${CMAKE_BINARY_DIR}/${EXECUTABLE}
             ${PACKAGE_DIR}/${EXECUTABLE})
