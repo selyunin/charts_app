@@ -1,0 +1,49 @@
+{
+  "ChartWindows": [
+    {
+      "name": "Raw charts",
+      "show": true,
+      "num_charts": 6,
+      "num_rows": 2,
+      "num_cols": 3,
+      "charts": [
+        {
+          "name": "Raw Mag 1",
+          "num_values": 3,
+          "y_labels": ["x", "y", "z"],
+          "x_label": "t"
+        },
+        {
+          "name": "Raw Gyro 1",
+          "num_values": 3,
+          "y_labels": ["x", "y", "z"],
+          "x_label": "t"
+        },
+        {
+          "name": "Raw Accel 1",
+          "num_values": 3,
+          "y_labels": ["x", "y", "z"],
+          "x_label": "t"
+        },
+        {
+          "name": "Raw Mag 2",
+          "num_values": 3,
+          "y_labels": ["x", "y", "z"],
+          "x_label": "t"
+        },
+        {
+          "name": "Raw Gyro 2",
+          "num_values": 3,
+          "y_labels": ["x", "y", "z"],
+          "x_label": "t"
+        },
+        {
+          "name": "Raw Temperature",
+          "num_values": 1,
+          "y_labels": ["T"],
+          "x_label": "t"
+        }
+      ]
+    }
+  ]
+}
