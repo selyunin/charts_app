@@ -28,17 +28,29 @@ elseif(UNIX)
     find_package(Qt5 ${QT_VERSION} EXACT REQUIRED COMPONENTS Core Gui DBus Widgets Charts XcbQpa Test)
 endif()
 
-include_directories(src)
+include_directories(src
+        src/sdb_widgets)
 
 add_executable(${EXECUTABLE} WIN32
         src/main.cpp
-        src/chartview.cpp
-        src/main_window.cpp)
+        src/sdb_widgets/SdbAppControlWidget.cpp
+        src/sdb_widgets/SdbButton.cpp
+        src/sdb_widgets/SdbChart.cpp
+        src/sdb_widgets/SdbChartControls.cpp
+        src/sdb_widgets/SdbChartSettings.cpp
+        src/sdb_widgets/SdbChartView.cpp
+        src/sdb_widgets/SdbChartWindowSettings.cpp
+        src/sdb_widgets/SdbJsonConfig.cpp
+        src/sdb_widgets/SdbMainWindow.cpp
+        src/sdb_widgets/SdbRadioButton.cpp
+        src/sdb_widgets/SdbRawChartController.cpp
+        src/sdb_widgets/SdbRawChartWidget.cpp
+        )
 
 add_executable(test WIN32
         test/test_gui.cpp
         src/chartview.cpp
-        src/main_window.cpp)
+        src/sdb_widgets/SdbMainWindow.cpp)
 
 find_library(LIBRARY_NAME PATHS ${CMAKE_PREFIX_PATH} NO_DEFAULT_PATH)
 

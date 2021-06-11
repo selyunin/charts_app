@@ -54,7 +54,7 @@ void ChartView::switchChartType()
     else
         newChart = new QChart();
 
-    // Move series and axes from old chart to new one
+    // Move series_ and axes from old chart to new one
     const QList<QAbstractSeries *> seriesList = oldChart->series();
     const QList<QAbstractAxis *> axisList = oldChart->axes();
     QList<QPair<qreal, qreal> > axisRanges;
@@ -85,6 +85,7 @@ void ChartView::switchChartType()
     }
 
     newChart->setTitle(oldChart->title());
+    newChart->setTheme(QtCharts::QChart::ChartThemeDark);
     setChart(newChart);
     delete oldChart;
 }

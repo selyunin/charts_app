@@ -5,17 +5,15 @@
 #include <QtWidgets/QApplication>
 #include <QtGui/QKeyEvent>
 
-class main_window : public QMainWindow {
+class SdbMainWindow : public QMainWindow {
 public:
-    main_window(const std::string& title = "", const QApplication* app = nullptr);
+    SdbMainWindow(const std::string& title = "");
 
-    ~main_window(){
-        this->ptr_app = nullptr;
-    }
+    ~SdbMainWindow(){    }
 
     void keyPressEvent(QKeyEvent* event) override;
 
-    const QApplication* ptr_app;
+    void setDarkTheme();
 };
 
 
