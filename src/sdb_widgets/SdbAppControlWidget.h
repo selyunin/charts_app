@@ -4,10 +4,12 @@
 #include <QWidget>
 #include <QRadioButton>
 #include <QCheckBox>
+#include <QVector>
 #include <QGridLayout>
 #include <QButtonGroup>
 #include "SdbRawChartController.h"
 #include "SdbJsonConfig.h"
+#include "SdbChartWindowSettings.h"
 
 class SdbAppControlWidget : public QWidget {
     Q_OBJECT
@@ -22,6 +24,7 @@ private:
     QCheckBox* rawMagChart_;
     SdbJsonConfig jsonConfig_;
     SdbRawChartController rawChartController_;
+    QVector<SdbChartWindowSettings*> chartWindowSettings;
 };
 
 
