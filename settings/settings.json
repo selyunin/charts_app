@@ -9,37 +9,37 @@
       "charts": [
         {
           "name": "Raw Mag 1",
-          "num_values": 3,
+          "num_graphs": 3,
           "y_labels": ["x", "y", "z"],
           "x_label": "t"
         },
         {
           "name": "Raw Gyro 1",
-          "num_values": 3,
+          "num_graphs": 3,
           "y_labels": ["x", "y", "z"],
           "x_label": "t"
         },
         {
           "name": "Raw Accel 1",
-          "num_values": 3,
+          "num_graphs": 3,
           "y_labels": ["x", "y", "z"],
           "x_label": "t"
         },
         {
           "name": "Raw Mag 2",
-          "num_values": 3,
+          "num_graphs": 3,
           "y_labels": ["x", "y", "z"],
           "x_label": "t"
         },
         {
           "name": "Raw Gyro 2",
-          "num_values": 3,
+          "num_graphs": 3,
           "y_labels": ["x", "y", "z"],
           "x_label": "t"
         },
         {
           "name": "Raw Temperature",
-          "num_values": 1,
+          "num_graphs": 1,
           "y_labels": ["T"],
           "x_label": "t"
         }
