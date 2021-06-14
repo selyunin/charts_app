@@ -15,9 +15,9 @@ SdbJsonConfig::SdbJsonConfig(): QObject()
     }
 }
 
-QVector<SdbChartWindowSettings*> SdbJsonConfig::parseSettings()
+QVector<SdbSettingsChartWindow*> SdbJsonConfig::parseSettings()
 {
-    QVector<SdbChartWindowSettings*> settings;
+    QVector<SdbSettingsChartWindow*> settings;
     jsonSettings_.setFileName(settingsPath_.absoluteFilePath());
     if (!jsonSettings_.open(QIODevice::ReadOnly | QIODevice::Text)){
         std::cout<<"Cannot open `settings.json` file!\n";
@@ -40,9 +40,9 @@ QVector<SdbChartWindowSettings*> SdbJsonConfig::parseSettings()
     return settings;
 }
 
-QVector<SdbChartWindowSettings*> SdbJsonConfig::parseAllChartWindowsConfig(const QJsonArray& windowConfigs)
+QVector<SdbSettingsChartWindow*> SdbJsonConfig::parseAllChartWindowsConfig(const QJsonArray& windowConfigs)
 {
-    QVector<SdbChartWindowSettings*> parsedWindowConfigs;
+    QVector<SdbSettingsChartWindow*> parsedWindowConfigs;
     std::cout<<"SdbJsonConfig::parseAllChartWindowsConfig\n";
     for (auto windowConfig=windowConfigs.begin(); windowConfig != windowConfigs.end(); ++windowConfig){
         if (windowConfig->isObject()){
@@ -53,10 +53,10 @@ QVector<SdbChartWindowSettings*> SdbJsonConfig::parseAllChartWindowsConfig(const
     return parsedWindowConfigs;
 }
 
-SdbChartWindowSettings* SdbJsonConfig::parseChartWindowConfig(const QJsonObject& chartConfigObject)
+SdbSettingsChartWindow* SdbJsonConfig::parseChartWindowConfig(const QJsonObject& chartConfigObject)
 {
     std::cout<<"SdbJsonConfig::parseChartWindowConfig\n";
-    auto* windowSettings = new SdbChartWindowSettings();
+    auto* windowSettings = new SdbSettingsChartWindow();
     if (chartConfigObject.contains("name") && chartConfigObject["name"].isString()){
         windowSettings->setName(chartConfigObject["name"].toString());
     }
@@ -82,14 +82,11 @@ SdbChartWindowSettings* SdbJsonConfig::parseChartWindowConfig(const QJsonObject&
     return windowSettings;
 }
 
-SdbChartSettings* SdbJsonConfig::parseChartSettings(const QJsonObject& chartConfig)
+SdbSettingsChart* SdbJsonConfig::parseChartSettings(const QJsonObject& chartConfig)
 {
-    auto* chartSettings = new SdbChartSettings();
+    auto* chartSettings = new SdbSettingsChart();
     if (chartConfig.contains("name") && chartConfig["name"].isString()){
         chartSettings->setName(chartConfig["name"].toString());
-    }
-    if (chartConfig.contains("num_graphs")){
-        chartSettings->setNumGraphs(chartConfig["num_graphs"].toInt());
     }
     if (chartConfig.contains("enabled") && chartConfig["enabled"].isBool()){
         chartSettings->setEnabled(chartConfig["enabled"].toBool());
@@ -97,17 +94,24 @@ SdbChartSettings* SdbJsonConfig::parseChartSettings(const QJsonObject& chartConf
     if (chartConfig.contains("x_label") && chartConfig["x_label"].isString()){
         chartSettings->setXLabel(chartConfig["x_label"].toString());
     }
-    if (chartConfig.contains("y_labels") && chartConfig["y_labels"].isArray()){
-        auto yLabelsArray = chartConfig["y_labels"].toArray();
-        for (auto elem = yLabelsArray.begin(); elem != yLabelsArray.end(); ++elem){
-            chartSettings->addYLabel(elem->toString());
-        }
-    }
-    if (chartConfig.contains("y_active") && chartConfig["y_active"].isArray()){
-        auto yLabelsArray = chartConfig["y_active"].toArray();
-        for (auto elem = yLabelsArray.begin(); elem != yLabelsArray.end(); ++elem){
-            chartSettings->addYActive(elem->toBool());
+    if (chartConfig.contains("series") && chartConfig["series"].isArray()){
+        auto chartConfigArray = chartConfig["series"].toArray();
+        for (auto elem = chartConfigArray.begin(); elem != chartConfigArray.end(); ++elem){
+            auto seriesConfig = parseSeriesSettings(elem->toObject());
+            chartSettings->seriesSettings.push_back(seriesConfig);
         }
     }
     return chartSettings;
+}
+
+SdbSettingsSeries* SdbJsonConfig::parseSeriesSettings(const QJsonObject& seriesConfig)
+{
+    auto* seriesSettings = new SdbSettingsSeries();
+    if (seriesConfig.contains("y_label") && seriesConfig["y_label"].isString()){
+        seriesSettings->yLabel = seriesConfig["y_label"].toString();
+    }
+    if (seriesConfig.contains("enabled") && seriesConfig["enabled"].isBool()){
+        seriesSettings->enabled = seriesConfig["enabled"].toBool();
+    }
+    return seriesSettings;
 }

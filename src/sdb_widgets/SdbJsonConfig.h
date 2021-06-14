@@ -7,8 +7,9 @@
 #include <QObject>
 #include <QJsonObject>
 #include <QJsonArray>
-#include "SdbChartWindowSettings.h"
-#include "SdbChartSettings.h"
+#include "SdbSettingsChartWindow.h"
+#include "SdbSettingsChart.h"
+#include "SdbSettingsSeries.h"
 
 QT_USE_NAMESPACE
 
@@ -18,11 +19,12 @@ class SdbJsonConfig: public QObject
 
 public:
     SdbJsonConfig();
-    QVector<SdbChartWindowSettings*> parseSettings();
+    QVector<SdbSettingsChartWindow*> parseSettings();
 private:
-    QVector<SdbChartWindowSettings*> parseAllChartWindowsConfig(const QJsonArray& allChartConfigs);
-    SdbChartWindowSettings* parseChartWindowConfig(const QJsonObject& chartConfig);
-    SdbChartSettings* parseChartSettings(const QJsonObject& chartConfig);
+    QVector<SdbSettingsChartWindow*> parseAllChartWindowsConfig(const QJsonArray& allChartConfigs);
+    SdbSettingsChartWindow* parseChartWindowConfig(const QJsonObject& chartConfig);
+    SdbSettingsChart* parseChartSettings(const QJsonObject& chartConfig);
+    SdbSettingsSeries* parseSeriesSettings(const QJsonObject& seriesConfig);
     QFileInfo settingsPath_;
     QDir executablePath_;
     QFile jsonSettings_;

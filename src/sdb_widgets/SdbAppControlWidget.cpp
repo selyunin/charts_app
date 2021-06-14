@@ -3,7 +3,7 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include "SdbChartSettings.h"
+#include "SdbSettingsChart.h"
 
 SdbAppControlWidget::SdbAppControlWidget()
     : QWidget()
@@ -20,7 +20,7 @@ void SdbAppControlWidget::createWidget()
         QGroupBox* windowGroupBox = new QGroupBox(windowName, this);
         auto* groupLayout = new QGridLayout(this);
         auto groupRowIdx = 0;
-        QObject::connect(windowGroupBox, &QGroupBox::clicked, windowSettings, &SdbChartWindowSettings::setShow);
+        QObject::connect(windowGroupBox, &QGroupBox::clicked, windowSettings, &SdbSettingsChartWindow::setShow);
         windowGroupBox->setCheckable(true);
         windowGroupBox->setEnabled(true);
         windowGroupBox->setChecked(windowSettings->show());
@@ -31,14 +31,13 @@ void SdbAppControlWidget::createWidget()
             chartGroup->setCheckable(true);
             chartGroup->setEnabled(true);
             chartGroup->setChecked(chartSettings->enabled());
-            QObject::connect(chartGroup, &QGroupBox::clicked, chartSettings, &SdbChartSettings::setEnabled);
+            QObject::connect(chartGroup, &QGroupBox::clicked, chartSettings, &SdbSettingsChart::setEnabled);
             auto hbox = new QHBoxLayout;
-            auto yActiveIdx = 0;
-            for(auto& yLabel : chartSettings->yLabels()){
-                auto yLabelCheckBox = new QCheckBox(yLabel);
-                yLabelCheckBox->setChecked(chartSettings->yActive().at(yActiveIdx++));
-                //connect checkboxes of individual elements to a signal
-//                QObject::connect(yLabelCheckBox, &QCheckBox::stateChanged, )
+            for(auto& seriesSettings : chartSettings->seriesSettings){
+                auto yLabelCheckBox = new QCheckBox(seriesSettings->yLabel);
+                QObject::connect(yLabelCheckBox, &QCheckBox::stateChanged, seriesSettings, &SdbSettingsSeries::updateEnabled);
+                yLabelCheckBox->setChecked(seriesSettings->enabled);
+//                QObject::connect(yLabelCheckBox, &QCheckBox::stateChanged, seriesSettings, &SdbSettingsSeries::updateEnabled);
                 hbox->addWidget(yLabelCheckBox);
             }
             chartGroup->setLayout(hbox);

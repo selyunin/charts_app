@@ -2,7 +2,7 @@
 #define APP_SDBAPPCONTROLWIDGET_H
 
 #include "SdbChartController.h"
-#include "SdbChartWindowSettings.h"
+#include "SdbSettingsChartWindow.h"
 #include "SdbJsonConfig.h"
 #include <QButtonGroup>
 #include <QCheckBox>
@@ -21,7 +21,7 @@ private:
     QGridLayout grid_;
     SdbJsonConfig jsonConfig_;
     QVector<SdbChartController*> chartControllers_;
-    QVector<SdbChartWindowSettings*> chartWindowSettings;
+    QVector<SdbSettingsChartWindow*> chartWindowSettings;
 };
 
 #endif //APP_SDBAPPCONTROLWIDGET_H

@@ -1,17 +1,17 @@
-#ifndef APP_SDBCHARTWINDOWSETTINGS_H
-#define APP_SDBCHARTWINDOWSETTINGS_H
+#ifndef APP_SDBSETTINGSCHARTWINDOW_H
+#define APP_SDBSETTINGSCHARTWINDOW_H
 
-#include "SdbChartSettings.h"
+#include "SdbSettingsChart.h"
 #include <QObject>
 #include <QVector>
 #include <iostream>
 
-class SdbChartWindowSettings : public QObject
+class SdbSettingsChartWindow : public QObject
 {
     Q_OBJECT
 
 public:
-    SdbChartWindowSettings() = default;
+    SdbSettingsChartWindow() = default;
     Q_PROPERTY(QString name MEMBER name_ READ name WRITE setName)
     Q_PROPERTY(bool show MEMBER show_ READ show WRITE setShow)
     Q_PROPERTY(int numCharts MEMBER numCharts_ READ numCharts WRITE setNumCharts)
@@ -27,7 +27,7 @@ public:
     void setNumRows(int newValue) { numRows_ = newValue; }
     [[nodiscard]] int numCols() const { return numCols_; }
     void setNumCols(int newValue) { numCols_ = newValue; }
-    QVector<SdbChartSettings*>& chartSettingsRef() { return chartSettings_; }
+    QVector<SdbSettingsChart*>& chartSettingsRef() { return chartSettings_; }
 
 public Q_SLOTS:
     void setShow(bool newShowValue) { show_ = newShowValue; std::cout<<"New Value: "<<show_<<"\n";}
@@ -38,7 +38,7 @@ private:
     int numCharts_;
     int numRows_;
     int numCols_;
-    QVector<SdbChartSettings*> chartSettings_;
+    QVector<SdbSettingsChart*> chartSettings_;
 };
 
-#endif //APP_SDBCHARTWINDOWSETTINGS_H
+#endif //APP_SDBSETTINGSCHARTWINDOW_H

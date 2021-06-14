@@ -10,49 +10,107 @@
         {
           "name": "Raw Mag 1",
           "enabled": true,
-          "num_graphs": 3,
-          "y_labels": ["x", "y", "z"],
-          "y_active": [true, true, true],
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
+              "enabled": true
+            }
+          ],
           "x_label": "t"
         },
         {
           "name": "Raw Gyro 1",
           "enabled": true,
-          "num_graphs": 3,
-          "y_labels": ["x", "y", "z"],
-          "y_active": [true, true, true],
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
+              "enabled": true
+            }
+          ],
           "x_label": "t"
         },
         {
           "name": "Raw Accel 1",
           "enabled": true,
-          "num_graphs": 3,
-          "y_labels": ["x", "y", "z"],
-          "y_active": [true, true, true],
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
+              "enabled": true
+            }
+          ],
           "x_label": "t"
         },
         {
           "name": "Raw Mag 2",
           "enabled": true,
-          "num_graphs": 3,
-          "y_labels": ["x", "y", "z"],
-          "y_active": [true, true, true],
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
+              "enabled": true
+            }
+          ],
           "x_label": "t"
         },
         {
           "name": "Raw Gyro 2",
           "enabled": true,
-          "num_graphs": 3,
-          "y_labels": ["x", "y", "z"],
-          "y_active": [true, true, true],
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
+              "enabled": true
+            }
+          ],
           "x_label": "t"
         },
         {
           "name": "Raw Temp",
           "enabled": true,
-          "num_graphs": 1,
-          "y_labels": ["T"],
-          "y_active": [true],
+          "series": [
+            {
+              "y_label": "T",
+              "enabled": true
+            }
+          ],
           "x_label": "t"
         }
       ]
