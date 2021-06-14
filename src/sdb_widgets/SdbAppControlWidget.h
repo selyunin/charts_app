@@ -1,15 +1,15 @@
 #ifndef APP_SDBAPPCONTROLWIDGET_H
 #define APP_SDBAPPCONTROLWIDGET_H
 
-#include <QWidget>
-#include <QRadioButton>
-#include <QCheckBox>
-#include <QVector>
-#include <QGridLayout>
-#include <QButtonGroup>
-#include "SdbRawChartController.h"
-#include "SdbJsonConfig.h"
+#include "SdbChartController.h"
 #include "SdbChartWindowSettings.h"
+#include "SdbJsonConfig.h"
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QGridLayout>
+#include <QRadioButton>
+#include <QVector>
+#include <QWidget>
 
 class SdbAppControlWidget : public QWidget {
     Q_OBJECT
@@ -19,13 +19,9 @@ public:
 
 private:
     QGridLayout grid_;
-    QButtonGroup rawButtonGroup_;
-    QCheckBox* rawChartRBtn_;
-    QCheckBox* rawMagChart_;
     SdbJsonConfig jsonConfig_;
-    SdbRawChartController rawChartController_;
+    QVector<SdbChartController*> chartControllers_;
     QVector<SdbChartWindowSettings*> chartWindowSettings;
 };
-
 
 #endif //APP_SDBAPPCONTROLWIDGET_H

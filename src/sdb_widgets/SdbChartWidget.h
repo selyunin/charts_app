@@ -1,21 +1,21 @@
-#ifndef APP_SDBRAWCHARTWIDGET_H
-#define APP_SDBRAWCHARTWIDGET_H
+#ifndef APP_SDBCHARTWIDGET_H
+#define APP_SDBCHARTWIDGET_H
 
 #include <QWidget>
 #include <QGridLayout>
 #include <QTimer>
 #include <QPointF>
 #include <QChart>
+#include <QVector>
 
+#include "SdbChartControlPanel.h"
 #include "SdbChartView.h"
-#include "SdbChartControls.h"
 
-class SdbRawChartWidget : public QWidget{
+class SdbChartWidget : public QWidget{
     Q_OBJECT
 public:
-
-    SdbRawChartWidget() = delete;
-    explicit SdbRawChartWidget(QWidget* parent = nullptr);
+    SdbChartWidget() = delete;
+    explicit SdbChartWidget(QWidget* parent = nullptr);
     void createWidget();
     void createCharts();
 
@@ -26,10 +26,12 @@ public:
     SdbChartView rawMag2ChartView;
     SdbChartView rawGyro2ChartView;
     SdbChartView tempChartView;
-    QGridLayout grid;
-    SdbChartControls* chartControls;
 
+    QVector<SdbChartView*> chartViews;
+
+    QGridLayout grid;
+    SdbChartControlPanel * chartControls;
 };
 
 
-#endif //APP_SDBRAWCHARTWIDGET_H
+#endif //APP_SDBCHARTWIDGET_H

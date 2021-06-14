@@ -1,10 +1,10 @@
-#ifndef APP_SDBCHARTCONTROLS_H
-#define APP_SDBCHARTCONTROLS_H
+#ifndef APP_SDBCHARTCONTROLPANEL_H
+#define APP_SDBCHARTCONTROLPANEL_H
 
 #include <QHBoxLayout>
 #include "SdbButton.h"
 
-class SdbChartControls : public QHBoxLayout {
+class SdbChartControlPanel : public QHBoxLayout {
     Q_OBJECT
 public slots:
     void startButtonHandler();
@@ -12,7 +12,7 @@ public slots:
     void saveButtonHandler();
     void recordButtonHandler();
 public:
-    explicit SdbChartControls(QWidget* parent);
+    explicit SdbChartControlPanel(QWidget* parent);
     void createControls();
 
 private:
@@ -27,4 +27,4 @@ private:
 };
 
 
-#endif //APP_SDBCHARTCONTROLS_H
+#endif //APP_SDBCHARTCONTROLPANEL_H

@@ -36,15 +36,15 @@ add_executable(${EXECUTABLE} WIN32
         src/sdb_widgets/SdbAppControlWidget.cpp
         src/sdb_widgets/SdbButton.cpp
         src/sdb_widgets/SdbChart.cpp
-        src/sdb_widgets/SdbChartControls.cpp
+        src/sdb_widgets/SdbChartControlPanel.cpp
         src/sdb_widgets/SdbChartSettings.cpp
         src/sdb_widgets/SdbChartView.cpp
         src/sdb_widgets/SdbChartWindowSettings.cpp
         src/sdb_widgets/SdbJsonConfig.cpp
         src/sdb_widgets/SdbMainWindow.cpp
         src/sdb_widgets/SdbRadioButton.cpp
-        src/sdb_widgets/SdbRawChartController.cpp
-        src/sdb_widgets/SdbRawChartWidget.cpp
+        src/sdb_widgets/SdbChartController.cpp
+        src/sdb_widgets/SdbChartWidget.cpp
         )
 
 add_executable(test WIN32

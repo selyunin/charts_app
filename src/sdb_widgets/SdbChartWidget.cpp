@@ -1,22 +1,22 @@
-#include <QString>
-#include "SdbRawChartWidget.h"
+#include "SdbChartWidget.h"
 #include "SdbChart.h"
+#include <QString>
 
-SdbRawChartWidget::SdbRawChartWidget(QWidget* parent):
+SdbChartWidget::SdbChartWidget(QWidget* parent):
         QWidget(parent), grid(this)
 {
-    chartControls = new SdbChartControls(nullptr);
+    chartControls = new SdbChartControlPanel(nullptr);
     createWidget();
 }
 
-void SdbRawChartWidget::createWidget()
+void SdbChartWidget::createWidget()
 {
     chartControls->createControls();
     grid.addLayout(chartControls, 0, 1,1,2);
     createCharts();
 
 }
-void SdbRawChartWidget::createCharts()
+void SdbChartWidget::createCharts()
 {
     auto magChart = new SdbChart(3, QString("Raw Mag 1"), QVector<QString>{"x", "y", "z"});
     rawMagChartView.setChart(magChart);

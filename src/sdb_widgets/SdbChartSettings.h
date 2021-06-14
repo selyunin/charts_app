@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include <QVector>
+#include <iostream>
 
 class SdbChartSettings : public QObject
 {
@@ -29,10 +30,13 @@ public:
     const QString &type() { return type_; }
     void setType(const QString &newType) { type_ = newType; }
     bool enabled() { return enabled_; }
-    void setEnabled(bool newValue) { enabled_ = newValue; }
+
     QVector<bool> &yActive() { return yActive_; }
     void addYActive(bool value) { yActive_.push_back(value); }
     void clearYActive() { yActive_.clear(); }
+
+public Q_SLOTS:
+    void setEnabled(bool newValue) { enabled_ = newValue; std::cout<<"Enabled: "<<enabled_<<"\n";}
 
 private:
     QString name_;

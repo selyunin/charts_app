@@ -3,9 +3,10 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include "SdbChartSettings.h"
 
 SdbAppControlWidget::SdbAppControlWidget()
-    : QWidget(), rawChartController_(this)
+    : QWidget()
 {
     createWidget();
 }
@@ -14,25 +15,31 @@ void SdbAppControlWidget::createWidget()
 {
     chartWindowSettings = jsonConfig_.parseSettings();
     int rowIdx = 0;
-    for (auto& windowSettings : chartWindowSettings){
+    for (auto windowSettings : chartWindowSettings){
         const auto& windowName = windowSettings->name();
         QGroupBox* windowGroupBox = new QGroupBox(windowName, this);
         auto* groupLayout = new QGridLayout(this);
         auto groupRowIdx = 0;
+        QObject::connect(windowGroupBox, &QGroupBox::clicked, windowSettings, &SdbChartWindowSettings::setShow);
         windowGroupBox->setCheckable(true);
-        windowGroupBox->setEnabled(windowSettings->show());
+        windowGroupBox->setEnabled(true);
+        windowGroupBox->setChecked(windowSettings->show());
+
         for(auto& chartSettings : windowSettings->chartSettingsRef()){
             auto& chartName = chartSettings->name();
             auto*chartGroup = new QGroupBox(chartName);
             chartGroup->setCheckable(true);
+            chartGroup->setEnabled(true);
             chartGroup->setChecked(chartSettings->enabled());
+            QObject::connect(chartGroup, &QGroupBox::clicked, chartSettings, &SdbChartSettings::setEnabled);
             auto hbox = new QHBoxLayout;
             auto yActiveIdx = 0;
-            auto groupColIdx = 0;
             for(auto& yLabel : chartSettings->yLabels()){
                 auto yLabelCheckBox = new QCheckBox(yLabel);
                 yLabelCheckBox->setChecked(chartSettings->yActive().at(yActiveIdx++));
-                hbox->addWidget(yLabelCheckBox, groupColIdx++);
+                //connect checkboxes of individual elements to a signal
+//                QObject::connect(yLabelCheckBox, &QCheckBox::stateChanged, )
+                hbox->addWidget(yLabelCheckBox);
             }
             chartGroup->setLayout(hbox);
             groupLayout->addWidget(chartGroup, groupRowIdx++, 0);
@@ -44,12 +51,6 @@ void SdbAppControlWidget::createWidget()
     setLayout(&grid_);
     setWindowTitle("Charts");
 
-//    rawChartRBtn_ = new QCheckBox("Raw Chart", this);
-//    rawChartRBtn_->setChecked(true);
-//    QObject::connect(rawChartRBtn_, &QCheckBox::stateChanged, &rawChartController_, &SdbRawChartController::handleRawChartWindow);
-//    rawChartRBtn_->setStyleSheet("QCheckBox { padding: 20; color: white };\n QCheckBox::indicator {\n"
-//                  "    color: black;\n"
-//                  "}");
-//    rawChartRBtn_->update();
+//    QObject::connect(rawChartRBtn_, &QCheckBox::stateChanged, &rawChartController_, &SdbChartController::handleRawChartWindow);
 
 }

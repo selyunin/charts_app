@@ -4,8 +4,9 @@
 #include "SdbChartSettings.h"
 #include <QObject>
 #include <QVector>
+#include <iostream>
 
-class SdbChartWindowSettings : QObject
+class SdbChartWindowSettings : public QObject
 {
     Q_OBJECT
 
@@ -19,7 +20,7 @@ public:
     QString name() { return name_; }
     void setName(const QString &newName) { name_ = newName; }
     [[nodiscard]] bool show() const { return show_; }
-    void setShow(bool newShowValue) { show_ = newShowValue; }
+
     [[nodiscard]] int numCharts() const { return numCharts_; }
     void setNumCharts(int newValue) { numCharts_ = newValue; }
     [[nodiscard]] int numRows() const { return numRows_; }
@@ -27,6 +28,9 @@ public:
     [[nodiscard]] int numCols() const { return numCols_; }
     void setNumCols(int newValue) { numCols_ = newValue; }
     QVector<SdbChartSettings*>& chartSettingsRef() { return chartSettings_; }
+
+public Q_SLOTS:
+    void setShow(bool newShowValue) { show_ = newShowValue; std::cout<<"New Value: "<<show_<<"\n";}
 
 private:
     QString name_;
