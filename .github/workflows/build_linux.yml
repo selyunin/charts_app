@@ -74,4 +74,4 @@ jobs:
         with:
           name: charts_app_linux_${{env.VERSION_ID}}
           path: |
-            ${{github.workspace}}/charts_app_linux_v${{env.VERSION_ID}}.tar.gz
+            ${{github.workspace}}/build/charts_app_linux_v${{env.VERSION_ID}}.tar.gz
