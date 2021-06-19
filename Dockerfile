@@ -1,6 +1,6 @@
 # Author: Dr. Konstantin Selyunin
 # Date: 1 June 2021
-# Version: v0.1
+# Version: v0.2
 
 # start from official ubuntu image
 FROM ubuntu
