@@ -1,17 +1,18 @@
 #include "SdbAppControlWidget.h"
 #include "SdbRadioButton.h"
+#include "sdb_settings/SdbSettingsChart.h"
 #include <QGroupBox>
-#include <QVBoxLayout>
 #include <QHBoxLayout>
-#include "SdbSettingsChart.h"
+#include <QVBoxLayout>
 
 SdbAppControlWidget::SdbAppControlWidget()
     : QWidget()
 {
-    createWidget();
+    chartController_ = new SdbChartController(this);
+    createControlWidget();
 }
 
-void SdbAppControlWidget::createWidget()
+void SdbAppControlWidget::createControlWidget()
 {
     chartWindowSettings = jsonConfig_.parseSettings();
     int rowIdx = 0;
@@ -49,7 +50,12 @@ void SdbAppControlWidget::createWidget()
     }
     setLayout(&grid_);
     setWindowTitle("Charts");
-
-//    QObject::connect(rawChartRBtn_, &QCheckBox::stateChanged, &rawChartController_, &SdbChartController::handleRawChartWindow);
-
 }
+
+void SdbAppControlWidget::populateChartWindows()
+{
+    for(auto chartWindowSetting : chartWindowSettings){
+        chartController_->createChartWindow(chartWindowSetting);
+    }
+}
+

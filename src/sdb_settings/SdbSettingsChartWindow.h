@@ -17,7 +17,7 @@ public:
     Q_PROPERTY(int numCharts MEMBER numCharts_ READ numCharts WRITE setNumCharts)
     Q_PROPERTY(int numRows MEMBER numRows_ READ numRows WRITE setNumRows)
     Q_PROPERTY(int numCols MEMBER numCols_ READ numCols WRITE setNumCols)
-    QString name() { return name_; }
+    QString& name() { return name_; }
     void setName(const QString &newName) { name_ = newName; }
     [[nodiscard]] bool show() const { return show_; }
 

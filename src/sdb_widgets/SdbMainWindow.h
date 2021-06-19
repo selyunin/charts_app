@@ -4,10 +4,11 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QApplication>
 #include <QtGui/QKeyEvent>
+#include <QString>
 
 class SdbMainWindow : public QMainWindow {
 public:
-    SdbMainWindow(const std::string& title = "");
+    SdbMainWindow(const QString& title = "");
 
     ~SdbMainWindow(){    }
 

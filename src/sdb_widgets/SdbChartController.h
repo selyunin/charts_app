@@ -3,6 +3,7 @@
 
 #include "SdbChartWidget.h"
 #include "SdbMainWindow.h"
+#include "SdbSettingsChartWindow.h"
 #include <memory>
 #include <QObject>
 
@@ -20,8 +21,13 @@ public slots:
 public:
     SdbChartController(QObject* parent);
 
+    void createChartWindow(SdbSettingsChartWindow* settings);
+
     SdbMainWindow* pChartWindow;
     SdbChartWidget* pChartWidget;
+
+    QVector<SdbMainWindow*> pChartWindows;
+    QVector<SdbChartWidget*> pChartWidgets;
 };
 
 #endif //APP_SDBCHARTCONTROLLER_H

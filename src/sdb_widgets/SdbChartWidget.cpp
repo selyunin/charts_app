@@ -13,7 +13,7 @@ void SdbChartWidget::createWidget()
 {
     chartControls->createControls();
     grid.addLayout(chartControls, 0, 1,1,2);
-    createCharts();
+//    createCharts();
 
 }
 void SdbChartWidget::createCharts()
@@ -41,4 +41,9 @@ void SdbChartWidget::createCharts()
     auto tempChart = new SdbChart(3, QString("Temperature"), QVector<QString>{"x", "y", "z"});
     tempChartView.setChart(tempChart);
     grid.addWidget(&tempChartView, 2, 2, 1, 1);
+}
+
+void SdbChartWidget::populateCharts(const SdbSettingsChartWindow* windowSettings)
+{
+
 }

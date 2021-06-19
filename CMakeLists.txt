@@ -29,23 +29,26 @@ elseif(UNIX)
 endif()
 
 include_directories(src
-        src/sdb_widgets)
+        src/sdb_widgets
+        src/sdb_settings
+        )
 
 add_executable(${EXECUTABLE} WIN32
         src/main.cpp
+        src/sdb_settings/SdbJsonConfig.cpp
+        src/sdb_settings/SdbSettingsChart.cpp
+        src/sdb_settings/SdbSettingsChartWindow.cpp
+        src/sdb_settings/SdbSettingsSeries.cpp
         src/sdb_widgets/SdbAppControlWidget.cpp
         src/sdb_widgets/SdbButton.cpp
         src/sdb_widgets/SdbChart.cpp
         src/sdb_widgets/SdbChartControlPanel.cpp
-        src/sdb_widgets/SdbSettingsChart.cpp
-        src/sdb_widgets/SdbChartView.cpp
-        src/sdb_widgets/SdbSettingsChartWindow.cpp
-        src/sdb_widgets/SdbJsonConfig.cpp
-        src/sdb_widgets/SdbMainWindow.cpp
-        src/sdb_widgets/SdbRadioButton.cpp
         src/sdb_widgets/SdbChartController.cpp
         src/sdb_widgets/SdbChartWidget.cpp
-        src/sdb_widgets/SdbSettingsSeries.cpp src/sdb_widgets/SdbSettingsSeries.h)
+        src/sdb_widgets/SdbChartView.cpp
+        src/sdb_widgets/SdbMainWindow.cpp
+        src/sdb_widgets/SdbRadioButton.cpp
+        )
 
 add_executable(test WIN32
         test/test_gui.cpp

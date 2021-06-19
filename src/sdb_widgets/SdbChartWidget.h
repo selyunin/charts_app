@@ -10,6 +10,7 @@
 
 #include "SdbChartControlPanel.h"
 #include "SdbChartView.h"
+#include "SdbSettingsChartWindow.h"
 
 class SdbChartWidget : public QWidget{
     Q_OBJECT
@@ -18,6 +19,7 @@ public:
     explicit SdbChartWidget(QWidget* parent = nullptr);
     void createWidget();
     void createCharts();
+    void populateCharts(const SdbSettingsChartWindow* windowSettings);
 
     SdbChartView rawMagChartView;
     SdbChartView rawGyroChartView;

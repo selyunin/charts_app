@@ -115,3 +115,8 @@ SdbSettingsSeries* SdbJsonConfig::parseSeriesSettings(const QJsonObject& seriesC
     }
     return seriesSettings;
 }
+
+void SdbJsonConfig::saveSettings(const QVector<SdbSettingsChartWindow*>& settings, const QString& fileName)
+{
+
+}

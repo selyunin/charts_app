@@ -4,10 +4,10 @@
 
 using namespace std;
 
-SdbMainWindow::SdbMainWindow(const std::string& title)
+SdbMainWindow::SdbMainWindow(const QString& title)
 {
     resize(800, 600);
-    setWindowTitle(QString(title.c_str()));
+    setWindowTitle(title);
     setDarkTheme();
 }
 

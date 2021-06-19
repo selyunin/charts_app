@@ -2,8 +2,8 @@
 #define APP_SDBAPPCONTROLWIDGET_H
 
 #include "SdbChartController.h"
-#include "SdbSettingsChartWindow.h"
-#include "SdbJsonConfig.h"
+#include "sdb_settings/SdbJsonConfig.h"
+#include "sdb_settings/SdbSettingsChartWindow.h"
 #include <QButtonGroup>
 #include <QCheckBox>
 #include <QGridLayout>
@@ -15,12 +15,13 @@ class SdbAppControlWidget : public QWidget {
     Q_OBJECT
 public:
     SdbAppControlWidget();
-    void createWidget();
+    void createControlWidget();
+    void populateChartWindows();
 
 private:
     QGridLayout grid_;
     SdbJsonConfig jsonConfig_;
-    QVector<SdbChartController*> chartControllers_;
+    SdbChartController* chartController_;
     QVector<SdbSettingsChartWindow*> chartWindowSettings;
 };
 

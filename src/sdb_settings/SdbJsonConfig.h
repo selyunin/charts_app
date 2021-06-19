@@ -20,6 +20,7 @@ class SdbJsonConfig: public QObject
 public:
     SdbJsonConfig();
     QVector<SdbSettingsChartWindow*> parseSettings();
+    void saveSettings(const QVector<SdbSettingsChartWindow*>& settings, const QString& fileName = "");
 private:
     QVector<SdbSettingsChartWindow*> parseAllChartWindowsConfig(const QJsonArray& allChartConfigs);
     SdbSettingsChartWindow* parseChartWindowConfig(const QJsonObject& chartConfig);
