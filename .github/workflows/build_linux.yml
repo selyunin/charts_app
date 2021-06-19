@@ -70,10 +70,8 @@ jobs:
           ls -la
 
       - name: Upload artifacts
-        uses: actions/artifact@latest
+        uses: actions/upload-artifact@v2
         with:
-          name: charts_app_linux_v${{env.VERSION_ID}}
-          files: |
-            ${{github.workspace}}/build/charts_app_linux_v${{env.VERSION_ID}}.tar.gz
-          rootDirectory: |
-            ${{github.workspace}}/build
+          name: charts_app_linux_${{env.VERSION_ID}}
+          path: |
+            ${{github.workspace}}/charts_app_linux_v${{env.VERSION_ID}}.tar.gz
