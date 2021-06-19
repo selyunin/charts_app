@@ -1,0 +1,77 @@
+name: Build Linux
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Debug
+
+jobs:
+  build_job:
+    # The CMake configure and build commands are platform agnostic and should work equally
+    # well on Windows or Mac.  You can convert this to a matrix build if you need
+    # cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: ubuntu-latest
+    container:
+      image: kselyunin/qt_cmake_image:v0.2
+    env:
+      VERSION_MAJOR: 0
+      VERSION_MINOR: 0
+      VERSION_ID: 0.0.0
+      PROJECT: app
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: einaregilsson/build-number@v3
+        with:
+          token: ${{secrets.github_token}}
+
+      - name: Create Build Environment
+        # Some projects don't allow in-source building, so create a separate build directory
+        # We'll use this as our working directory for all subsequent commands
+        run: cmake -E make_directory ${{github.workspace}}/build
+
+      - name: Configure CMake
+        # Use a bash shell so we can use the same syntax for environment variable
+        # access regardless of the host operating system
+        shell: bash
+        # Note the current convention is to use the -S and -B options here to specify source
+        # and build directories, but this is only available with CMake 3.13 and higher.
+        run: |
+          pwd
+          ls -al
+          VERSION_MAJOR=`sed -n '1p' VERSION | grep -oEi ":.*" | grep -oEi "[[:alnum:]]+"`
+          VERSION_MINOR=`sed -n '2p' VERSION | grep -oEi ":.*" | grep -oEi "[[:alnum:]]+"`
+          VERSION_ID=${MAJOR}.${MINOR}.${BUILD_NUMBER}
+          echo "VERSION_MAJOR=${VERSION_MAJOR}" >> $GITHUB_ENV
+          echo "VERSION_MINOR=${VERSION_MINOR}" >> $GITHUB_ENV
+          echo "VERSION_ID=${VERSION_MAJOR}.${VERSION_MINOR}.${BUILD_NUMBER}" >> $GITHUB_ENV
+          cmake -E make_directory build
+          cd build && cmake -DVERSION_MAJOR=${VERSION_MAJOR} -DVERSION_MINOR=${VERSION_MINOR} -DBUILD_ID=${BUILD_NUMBER} ..
+
+      - name: Build
+        working-directory: ${{github.workspace}}/build
+        shell: bash
+        # Execute the build.  You can specify a specific target with "--target <NAME>"
+        run: |
+          pwd
+          ls -al
+          cmake --build . --config $BUILD_TYPE -j8
+
+      - name: Making portable install bundle
+        working-directory: ${{github.workspace}}/build
+        shell: bash
+        # Create portable Linux installation bundle
+        run: |
+          make install
+          mv ../../charts_app_linux charts_app_linux_v${VERSION_ID}
+          tar czvf charts_app_linux_v${VERSION_ID}.tar.gz charts_app_linux_v${VERSION_ID}
+          ls -la
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: charts_app_linux_${{env.VERSION_ID}}
+          path: |
+            ${{github.workspace}}/charts_app_linux_v${{env.VERSION_ID}}.tar.gz
