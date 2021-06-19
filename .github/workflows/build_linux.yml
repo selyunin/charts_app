@@ -70,7 +70,7 @@ jobs:
           ls -la
 
       - name: Upload artifacts
-        uses: actions/artifact
+        uses: actions/artifact@latest
         with:
           name: charts_app_linux_v${{env.VERSION_ID}}
           files: |
