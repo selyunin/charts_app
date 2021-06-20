@@ -38,7 +38,6 @@ void SdbAppControlWidget::createControlWidget()
                 auto yLabelCheckBox = new QCheckBox(seriesSettings->yLabel);
                 QObject::connect(yLabelCheckBox, &QCheckBox::stateChanged, seriesSettings, &SdbSettingsSeries::updateEnabled);
                 yLabelCheckBox->setChecked(seriesSettings->enabled);
-//                QObject::connect(yLabelCheckBox, &QCheckBox::stateChanged, seriesSettings, &SdbSettingsSeries::updateEnabled);
                 hbox->addWidget(yLabelCheckBox);
             }
             chartGroup->setLayout(hbox);
