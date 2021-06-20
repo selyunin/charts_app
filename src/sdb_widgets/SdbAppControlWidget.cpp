@@ -9,12 +9,17 @@ SdbAppControlWidget::SdbAppControlWidget()
     : QWidget()
 {
     chartController_ = new SdbChartController(this);
+    parseJsonSettings();
     createControlWidget();
+    populateChartWindows();
+}
+void SdbAppControlWidget::parseJsonSettings()
+{
+    chartWindowSettings = jsonConfig_.parseSettings();
 }
 
 void SdbAppControlWidget::createControlWidget()
 {
-    chartWindowSettings = jsonConfig_.parseSettings();
     int rowIdx = 0;
     for (auto windowSettings : chartWindowSettings){
         const auto& windowName = windowSettings->name();

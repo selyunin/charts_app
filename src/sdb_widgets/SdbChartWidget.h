@@ -17,22 +17,17 @@ class SdbChartWidget : public QWidget{
 public:
     SdbChartWidget() = delete;
     explicit SdbChartWidget(QWidget* parent = nullptr);
-    void createWidget();
-    void createCharts();
-    void populateCharts(const SdbSettingsChartWindow* windowSettings);
-
-    SdbChartView rawMagChartView;
-    SdbChartView rawGyroChartView;
-    SdbChartView rawAccelChartView;
-
-    SdbChartView rawMag2ChartView;
-    SdbChartView rawGyro2ChartView;
-    SdbChartView tempChartView;
+    void populateCharts(SdbSettingsChartWindow* windowSettings);
 
     QVector<SdbChartView*> chartViews;
 
     QGridLayout grid;
     SdbChartControlPanel * chartControls;
+
+    int num_rows;
+    int num_cols;
+    int current_row;
+    int current_col;
 };
 
 

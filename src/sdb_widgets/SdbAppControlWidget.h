@@ -17,6 +17,7 @@ public:
     SdbAppControlWidget();
     void createControlWidget();
     void populateChartWindows();
+    void parseJsonSettings();
 
 private:
     QGridLayout grid_;
