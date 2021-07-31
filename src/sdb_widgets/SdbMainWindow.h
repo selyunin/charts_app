@@ -7,6 +7,8 @@
 #include <QString>
 
 class SdbMainWindow : public QMainWindow {
+    QRect windowPosition;
+    bool everUpdated;
 public:
     SdbMainWindow(const QString& title = "");
 
@@ -15,6 +17,9 @@ public:
     void keyPressEvent(QKeyEvent* event) override;
 
     void setDarkTheme();
+
+public slots:
+    void handleShow(int showValue);
 };
 
 

@@ -6,9 +6,9 @@ using namespace std;
 
 SdbMainWindow::SdbMainWindow(const QString& title)
 {
-    resize(800, 600);
     setWindowTitle(title);
     setDarkTheme();
+    everUpdated = false;
 }
 
 void SdbMainWindow::keyPressEvent(QKeyEvent* event)
@@ -25,4 +25,18 @@ void SdbMainWindow::setDarkTheme()
     palette.setColor(QPalette::Window, QColor(0x121218));
     palette.setColor(QPalette::WindowText, QColor(0xd6d6d6));
     setPalette(palette);
+}
+
+void SdbMainWindow::handleShow(int showValue){
+    if (showValue){
+        if (everUpdated){
+            setGeometry(windowPosition);
+        }
+        everUpdated = true;
+        show();
+    }
+    else{
+        windowPosition = geometry();
+        hide();
+    }
 }
