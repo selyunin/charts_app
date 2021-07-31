@@ -118,5 +118,14 @@ SdbSettingsSeries* SdbJsonConfig::parseSeriesSettings(const QJsonObject& seriesC
 
 void SdbJsonConfig::saveSettings(const QVector<SdbSettingsChartWindow*>& settings, const QString& fileName)
 {
+    std::cout<<"SdbJsonConfig::saveSettings\n";
+    auto jsonSettingsPath = executablePath_.absolutePath() + "/settings/updated_settings.json";
+    QFileInfo updatedPath;
+    updatedPath.setFile(jsonSettingsPath);
+    QFile updatedSettings;
+    updatedSettings.setFileName(updatedPath.absoluteFilePath());
+    if (!updatedSettings.open(QIODevice::WriteOnly | QIODevice::Text)){
+        std::cout<<"Error: cannot open `updated_settings.json` file!\n";
 
+    }
 }
