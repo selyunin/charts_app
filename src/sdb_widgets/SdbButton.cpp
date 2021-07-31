@@ -10,11 +10,3 @@ SdbButton::SdbButton(const QString& text, const QColor& backgroundColor, QWidget
     setStyleSheet(format);
     update();
 }
-
-QSize SdbButton::sizeHint() const
-{
-    auto size = QPushButton::sizeHint();
-    size.setHeight(size.height() + 10);
-    size.setWidth(size.width() * 0.3);
-    return size;
-}

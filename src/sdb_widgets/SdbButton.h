@@ -6,7 +6,6 @@
 #include <QWidget>
 
 class SdbButton : public QPushButton {
-    [[nodiscard]] QSize sizeHint() const override;
 public:
     SdbButton(const QString& text, const QColor& backgroundColor, QWidget* parent = nullptr);
 
