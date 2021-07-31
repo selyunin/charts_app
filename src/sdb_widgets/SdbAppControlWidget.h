@@ -15,9 +15,10 @@ class SdbAppControlWidget : public QWidget {
     Q_OBJECT
 public:
     SdbAppControlWidget();
+    ~SdbAppControlWidget() override;
     void createControlWidget();
-    void populateChartWindows();
     void parseJsonSettings();
+    void populateCharts();
 
 private:
     QGridLayout grid_;

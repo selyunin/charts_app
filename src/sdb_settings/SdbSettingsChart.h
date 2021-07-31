@@ -26,9 +26,15 @@ public:
     bool enabled() { return enabled_; }
 
     QVector<SdbSettingsSeries*> seriesSettings;
+Q_SIGNALS:
+    void enabledChanged(bool value);
 
 public Q_SLOTS:
-    void setEnabled(bool newValue) { enabled_ = newValue; std::cout<<"Enabled: "<<enabled_<<"\n";}
+    void setEnabled(bool newValue) {
+        enabled_ = newValue;
+        emit enabledChanged(newValue);
+        std::cout<<"Enabled: "<<enabled_<<"\n";
+    }
 
 private:
     QString name_;

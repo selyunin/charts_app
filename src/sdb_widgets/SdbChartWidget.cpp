@@ -17,13 +17,18 @@ void SdbChartWidget::populateCharts(SdbSettingsChartWindow* windowSettings)
     current_col = 0;
     grid.addLayout(chartControls, 0, 0,1, num_cols);
     for(auto& chartSetting : windowSettings->chartSettingsRef()){
+        if (!chartSetting->enabled()){
+            continue;
+        }
         auto seriesSettings = chartSetting->seriesSettings;
-        auto numCharts = seriesSettings.size();
         auto chartName = chartSetting->name();
         QVector<QString> legends;
         for (auto seriesSetting: seriesSettings){
-            legends.push_back(seriesSetting->yLabel);
+            if (seriesSetting->enabled){
+                legends.push_back(seriesSetting->yLabel);
+            }
         }
+        auto numCharts = legends.size();
         auto chart = new SdbChart(numCharts, chartName, legends);
         auto chartView = new SdbChartView();
         chartView->setChart(chart);

@@ -28,9 +28,10 @@ public:
     [[nodiscard]] int numCols() const { return numCols_; }
     void setNumCols(int newValue) { numCols_ = newValue; }
     QVector<SdbSettingsChart*>& chartSettingsRef() { return chartSettings_; }
-
+Q_SIGNALS:
+    void showEmit(bool newValue);
 public Q_SLOTS:
-    void setShow(bool newShowValue) { show_ = newShowValue; std::cout<<"New Value: "<<show_<<"\n";}
+    void setShow(bool newShowValue) { show_ = newShowValue; emit showEmit(newShowValue); std::cout<<"show: "<<show_<<"\n";}
 
 private:
     QString name_;

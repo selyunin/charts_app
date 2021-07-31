@@ -33,14 +33,14 @@ void SdbChartController::destroyRawChartWindow() const
     std::cout<<"SdbChartController::destroyRawChartWindow\n";
     pChartWindow->close();
 }
-void SdbChartController::createChartWindow(SdbSettingsChartWindow* windowSettings)
+SdbMainWindow* SdbChartController::createChartWindow(SdbSettingsChartWindow* windowSettings)
 {
     std::cout<<"SdbChartController::createChartWindow\n";
     auto windowTitle = windowSettings->name();
     auto chartWindow = new SdbMainWindow(windowTitle);
     auto chartWidget = new SdbChartWidget(nullptr);
     chartWindow->setCentralWidget(chartWidget);
-    chartWindow->move(470, 200);
+    chartWindow->move(520, 200);
     chartWidget->populateCharts(windowSettings);
-    chartWindow->show();
+    return chartWindow;
 }

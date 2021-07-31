@@ -11,8 +11,12 @@ SdbAppControlWidget::SdbAppControlWidget()
     chartController_ = new SdbChartController(this);
     parseJsonSettings();
     createControlWidget();
-    populateChartWindows();
+    populateCharts();
 }
+SdbAppControlWidget::~SdbAppControlWidget(){
+    jsonConfig_.saveSettings(chartWindowSettings);
+}
+
 void SdbAppControlWidget::parseJsonSettings()
 {
     chartWindowSettings = jsonConfig_.parseSettings();
@@ -27,6 +31,7 @@ void SdbAppControlWidget::createControlWidget()
         auto* groupLayout = new QGridLayout(this);
         auto groupRowIdx = 0;
         QObject::connect(windowGroupBox, &QGroupBox::clicked, windowSettings, &SdbSettingsChartWindow::setShow);
+
         windowGroupBox->setCheckable(true);
         windowGroupBox->setEnabled(true);
         windowGroupBox->setChecked(windowSettings->show());
@@ -55,11 +60,16 @@ void SdbAppControlWidget::createControlWidget()
     setLayout(&grid_);
     setWindowTitle("Charts");
 }
-
-void SdbAppControlWidget::populateChartWindows()
+void SdbAppControlWidget::populateCharts()
 {
-    for(auto chartWindowSetting : chartWindowSettings){
-        chartController_->createChartWindow(chartWindowSetting);
+    for (auto windowSettings : chartWindowSettings) {
+        auto createdWindowPtr = chartController_->createChartWindow(windowSettings);
+        QObject::connect(windowSettings, &SdbSettingsChartWindow::showEmit, createdWindowPtr, &SdbMainWindow::handleShow);
+        if (windowSettings->show()) {
+            createdWindowPtr->handleShow(1);
+        }
+        for (auto& charSettings : windowSettings->chartSettingsRef()){
+
+        }
     }
 }
-

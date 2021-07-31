@@ -21,7 +21,7 @@ public slots:
 public:
     SdbChartController(QObject* parent);
 
-    void createChartWindow(SdbSettingsChartWindow* settings);
+    SdbMainWindow* createChartWindow(SdbSettingsChartWindow* settings);
 
     SdbMainWindow* pChartWindow;
     SdbChartWidget* pChartWidget;
