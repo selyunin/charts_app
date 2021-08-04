@@ -14,19 +14,13 @@ public:
     SdbSettingsChartWindow() = default;
     Q_PROPERTY(QString name MEMBER name_ READ name WRITE setName)
     Q_PROPERTY(bool show MEMBER show_ READ show WRITE setShow)
-    Q_PROPERTY(int numCharts MEMBER numCharts_ READ numCharts WRITE setNumCharts)
-    Q_PROPERTY(int numRows MEMBER numRows_ READ numRows WRITE setNumRows)
-    Q_PROPERTY(int numCols MEMBER numCols_ READ numCols WRITE setNumCols)
+    Q_PROPERTY(QString type MEMBER type_ READ type WRITE setType)
     QString& name() { return name_; }
     void setName(const QString &newName) { name_ = newName; }
     [[nodiscard]] bool show() const { return show_; }
+    void setType(const QString &newType) { type_ = newType; }
+    [[nodiscard]] QString& type() { return type_; }
 
-    [[nodiscard]] int numCharts() const { return numCharts_; }
-    void setNumCharts(int newValue) { numCharts_ = newValue; }
-    [[nodiscard]] int numRows() const { return numRows_; }
-    void setNumRows(int newValue) { numRows_ = newValue; }
-    [[nodiscard]] int numCols() const { return numCols_; }
-    void setNumCols(int newValue) { numCols_ = newValue; }
     QVector<SdbSettingsChart*>& chartSettingsRef() { return chartSettings_; }
 Q_SIGNALS:
     void showEmit(bool newValue);
@@ -36,9 +30,7 @@ public Q_SLOTS:
 private:
     QString name_;
     bool show_;
-    int numCharts_;
-    int numRows_;
-    int numCols_;
+    QString type_;
     QVector<SdbSettingsChart*> chartSettings_;
 };
 

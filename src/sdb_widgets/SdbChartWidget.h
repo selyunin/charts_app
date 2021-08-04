@@ -10,14 +10,14 @@
 
 #include "SdbChartControlPanel.h"
 #include "SdbChartView.h"
-#include "SdbSettingsChartWindow.h"
+#include "SdbSettingsChartWindow2D.h"
 
 class SdbChartWidget : public QWidget{
     Q_OBJECT
 public:
     SdbChartWidget() = delete;
     explicit SdbChartWidget(QWidget* parent = nullptr);
-    void populateCharts(SdbSettingsChartWindow* windowSettings);
+    void populateCharts(SdbSettingsChartWindow2D* windowSettings);
 
     QVector<SdbChartView*> chartViews;
 

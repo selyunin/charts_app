@@ -17,6 +17,8 @@ public:
     SdbAppControlWidget();
     ~SdbAppControlWidget() override;
     void createControlWidget();
+    void createTabControls();
+    QWidget* createTabControlWidget(SdbSettingsChartWindow* windowSetting);
     void parseJsonSettings();
     void populateCharts();
 

@@ -9,7 +9,7 @@ SdbChartWidget::SdbChartWidget(QWidget* parent):
     chartControls->createControls();
 }
 
-void SdbChartWidget::populateCharts(SdbSettingsChartWindow* windowSettings)
+void SdbChartWidget::populateCharts(SdbSettingsChartWindow2D* windowSettings)
 {
     num_rows = windowSettings->numRows();
     num_cols = windowSettings->numCols();

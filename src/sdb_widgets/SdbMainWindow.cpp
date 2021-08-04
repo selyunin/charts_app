@@ -7,7 +7,6 @@ using namespace std;
 SdbMainWindow::SdbMainWindow(const QString& title)
 {
     setWindowTitle(title);
-    setDarkTheme();
     everUpdated = false;
 }
 
@@ -17,14 +16,6 @@ void SdbMainWindow::keyPressEvent(QKeyEvent* event)
     if (key_pressed == 'Q'){
         QApplication::quit();
     }
-}
-
-void SdbMainWindow::setDarkTheme()
-{
-    auto palette = QMainWindow::palette();
-    palette.setColor(QPalette::Window, QColor(0x121218));
-    palette.setColor(QPalette::WindowText, QColor(0xd6d6d6));
-    setPalette(palette);
 }
 
 void SdbMainWindow::handleShow(int showValue){

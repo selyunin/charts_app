@@ -38,6 +38,7 @@ add_executable(${EXECUTABLE} WIN32
         src/sdb_settings/SdbJsonConfig.cpp
         src/sdb_settings/SdbSettingsChart.cpp
         src/sdb_settings/SdbSettingsChartWindow.cpp
+        src/sdb_settings/SdbSettingsChartWindow2D.cpp
         src/sdb_settings/SdbSettingsSeries.cpp
         src/sdb_widgets/SdbAppControlWidget.cpp
         src/sdb_widgets/SdbButton.cpp

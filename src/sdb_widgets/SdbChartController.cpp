@@ -41,6 +41,9 @@ SdbMainWindow* SdbChartController::createChartWindow(SdbSettingsChartWindow* win
     auto chartWidget = new SdbChartWidget(nullptr);
     chartWindow->setCentralWidget(chartWidget);
     chartWindow->move(520, 200);
-    chartWidget->populateCharts(windowSettings);
+    if (windowSettings->type() == QString("2D")){
+        chartWidget->populateCharts(dynamic_cast<SdbSettingsChartWindow2D *>(windowSettings));
+        // todo: windowSettings->populateCharts();
+    }
     return chartWindow;
 }

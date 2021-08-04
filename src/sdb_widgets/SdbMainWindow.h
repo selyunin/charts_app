@@ -16,8 +16,6 @@ public:
 
     void keyPressEvent(QKeyEvent* event) override;
 
-    void setDarkTheme();
-
 public slots:
     void handleShow(int showValue);
 };

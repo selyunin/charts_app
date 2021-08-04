@@ -1,7 +1,8 @@
-#include "SdbJsonConfig.h"
 #include <QByteArray>
 #include <QVector>
 #include <iostream>
+#include "SdbJsonConfig.h"
+#include "SdbSettingsChartWindow2D.h"
 
 SdbJsonConfig::SdbJsonConfig(): QObject()
 {
@@ -52,16 +53,18 @@ QVector<SdbSettingsChartWindow*> SdbJsonConfig::parseAllChartWindowsConfig(const
     }
     return parsedWindowConfigs;
 }
-
-SdbSettingsChartWindow* SdbJsonConfig::parseChartWindowConfig(const QJsonObject& chartConfigObject)
+SdbSettingsChartWindow* SdbJsonConfig::parseChartWindowConfig2D(const QJsonObject& chartConfigObject)
 {
     std::cout<<"SdbJsonConfig::parseChartWindowConfig\n";
-    auto* windowSettings = new SdbSettingsChartWindow();
+    auto* windowSettings = new SdbSettingsChartWindow2D();
     if (chartConfigObject.contains("name") && chartConfigObject["name"].isString()){
         windowSettings->setName(chartConfigObject["name"].toString());
     }
     if (chartConfigObject.contains("show") && chartConfigObject["show"].isBool()){
         windowSettings->setShow(chartConfigObject["show"].toBool());
+    }
+    if (chartConfigObject.contains("type")){
+        windowSettings->setType(chartConfigObject["type"].toString());
     }
     if (chartConfigObject.contains("num_charts")){
         windowSettings->setNumCharts(chartConfigObject["num_charts"].toInt());
@@ -80,6 +83,18 @@ SdbSettingsChartWindow* SdbJsonConfig::parseChartWindowConfig(const QJsonObject&
         }
     }
     return windowSettings;
+}
+
+
+SdbSettingsChartWindow* SdbJsonConfig::parseChartWindowConfig(const QJsonObject& chartConfigObject)
+{
+    if (chartConfigObject.contains("type") && chartConfigObject["type"].isString()){
+        QString type = chartConfigObject["type"].toString();
+        if (type == QString("2D")){
+            return parseChartWindowConfig2D(chartConfigObject);
+        }
+    }
+    return nullptr;
 }
 
 SdbSettingsChart* SdbJsonConfig::parseChartSettings(const QJsonObject& chartConfig)
