@@ -3,6 +3,7 @@
     {
       "name": "Raw charts",
       "show": true,
+      "type": "2D",
       "num_charts": 6,
       "num_rows": 2,
       "num_cols": 3,
