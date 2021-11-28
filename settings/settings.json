@@ -1,7 +1,7 @@
 {
   "ChartWindows": [
     {
-      "name": "Raw charts",
+      "name": "Raw",
       "show": true,
       "type": "2D",
       "num_charts": 6,
@@ -109,6 +109,111 @@
           "series": [
             {
               "y_label": "T",
+              "enabled": true
+            }
+          ],
+          "x_label": "t"
+        }
+      ]
+    },
+    {
+      "name": "Processed",
+      "show": true,
+      "type": "2D",
+      "num_charts": 5,
+      "num_rows": 2,
+      "num_cols": 3,
+      "charts": [
+        {
+          "name": "Processed Mag 1",
+          "enabled": true,
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
+              "enabled": true
+            }
+          ],
+          "x_label": "t"
+        },
+        {
+          "name": "Processed Gyro 1",
+          "enabled": true,
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
+              "enabled": true
+            }
+          ],
+          "x_label": "t"
+        },
+        {
+          "name": "Processed Accel 1",
+          "enabled": true,
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
+              "enabled": true
+            }
+          ],
+          "x_label": "t"
+        },
+        {
+          "name": "Processed Mag 2",
+          "enabled": true,
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
+              "enabled": true
+            }
+          ],
+          "x_label": "t"
+        },
+        {
+          "name": "Processed Gyro 2",
+          "enabled": true,
+          "series": [
+            {
+              "y_label": "x",
+              "enabled": true
+            },
+            {
+              "y_label": "y",
+              "enabled": true
+            },
+            {
+              "y_label": "z",
               "enabled": true
             }
           ],

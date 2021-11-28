@@ -24,6 +24,8 @@ public:
 private:
     QVector<SdbSettingsChartWindow*> parseAllChartWindowsConfig(const QJsonArray& allChartConfigs);
     SdbSettingsChartWindow* parseChartWindowConfig(const QJsonObject& chartConfig);
+    SdbSettingsChartWindow* parseChartWindowConfig2D(const QJsonObject& chartConfig);
+    SdbSettingsChartWindow* parseChartWindowConfig3D(const QJsonObject& chartConfig);
     SdbSettingsChart* parseChartSettings(const QJsonObject& chartConfig);
     SdbSettingsSeries* parseSeriesSettings(const QJsonObject& seriesConfig);
     QFileInfo settingsPath_;
