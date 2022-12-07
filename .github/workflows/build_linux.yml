@@ -22,7 +22,7 @@ jobs:
       PROJECT: app
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: einaregilsson/build-number@v3
         with:
           token: ${{secrets.github_token}}
@@ -41,23 +41,20 @@ jobs:
         run: |
           pwd
           ls -al
-          VERSION_MAJOR=`sed -n '1p' VERSION | grep -oEi ":.*" | grep -oEi "[[:alnum:]]+"`
-          VERSION_MINOR=`sed -n '2p' VERSION | grep -oEi ":.*" | grep -oEi "[[:alnum:]]+"`
-          VERSION_ID=${MAJOR}.${MINOR}.${BUILD_NUMBER}
+          VERSION_ID=${VERSION_MAJOR}.${VERSION_MINOR}.${BUILD_NUMBER}
           echo "VERSION_MAJOR=${VERSION_MAJOR}" >> $GITHUB_ENV
           echo "VERSION_MINOR=${VERSION_MINOR}" >> $GITHUB_ENV
           echo "VERSION_ID=${VERSION_MAJOR}.${VERSION_MINOR}.${BUILD_NUMBER}" >> $GITHUB_ENV
-          cmake -E make_directory build
-          cd build && cmake -DVERSION_MAJOR=${VERSION_MAJOR} -DVERSION_MINOR=${VERSION_MINOR} -DBUILD_ID=${BUILD_NUMBER} ..
+          cmake -B build -DVERSION_MAJOR=${VERSION_MAJOR} -DVERSION_MINOR=${VERSION_MINOR} -DBUILD_ID=${BUILD_NUMBER}
 
       - name: Build
-        working-directory: ${{github.workspace}}/build
+        working-directory: ${{github.workspace}}
         shell: bash
         # Execute the build.  You can specify a specific target with "--target <NAME>"
         run: |
           pwd
           ls -al
-          cmake --build . --config $BUILD_TYPE -j8
+          cmake --build build --config $BUILD_TYPE -j8
 
       - name: Making portable install bundle
         working-directory: ${{github.workspace}}/build
@@ -65,7 +62,7 @@ jobs:
         # Create portable Linux installation bundle
         run: |
           make install
-          mv ../../charts_app_linux charts_app_linux_v${VERSION_ID}
+          mv charts_app_linux charts_app_linux_v${VERSION_ID}
           tar czvf charts_app_linux_v${VERSION_ID}.tar.gz charts_app_linux_v${VERSION_ID}
           ls -la
 
