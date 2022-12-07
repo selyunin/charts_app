@@ -32,6 +32,14 @@ docker start -a -i **container_hash_from_previous_step**
 ```
 
 
+## Qt plugins output
+
+In order to see the output of the plugins, run:
+```
+export QT_DEBUG_PLUGINS=1
+```
+
+
 ## Maintainer
 
 [Dr. Konstantin Selyunin](http://selyunin.com/), for
