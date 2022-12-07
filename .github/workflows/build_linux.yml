@@ -57,14 +57,14 @@ jobs:
           cmake --build build --config $BUILD_TYPE -j8
 
       - name: Making portable install bundle
-        working-directory: ${{github.workspace}}/build
+        working-directory: ${{github.workspace}}
         shell: bash
         # Create portable Linux installation bundle
         run: |
-          make install
-          mv charts_app_linux charts_app_linux_v${VERSION_ID}
-          tar czvf charts_app_linux_v${VERSION_ID}.tar.gz charts_app_linux_v${VERSION_ID}
-          ls -la
+          cmake --install build
+          mv build/charts_app_linux build/charts_app_linux_v${VERSION_ID}
+          tar czvf build/charts_app_linux_v${VERSION_ID}.tar.gz build/charts_app_linux_v${VERSION_ID}
+          ls -la build/
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
