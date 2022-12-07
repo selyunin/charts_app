@@ -67,9 +67,9 @@ elseif(UNIX)
 endif()
 
 if(WIN32)
-    set(PACKAGE_DIR "${CMAKE_BINARY_DIR}/charts_app_win")
+    set(PACKAGE_DIR "${CMAKE_SOURCE_DIR}/charts_app_win")
 elseif(UNIX)
-    set(PACKAGE_DIR "${CMAKE_BINARY_DIR}/charts_app_linux")
+    set(PACKAGE_DIR "${CMAKE_SOURCE_DIR}/charts_app_linux")
 endif()
 
 if(WIN32)
