@@ -1,0 +1,39 @@
+version: "3.6"
+
+services:
+
+  qt5-cpp-image: &qt5-cpp-image
+    image: ${DOCKER_IMAGE}:${VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: qt5-cpp-image
+    volumes:
+      - .:/repo
+      - /dev:/dev
+      - /tmp:/tmp
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /var/run/dbus:/var/run/dbus
+      - /run/udev:/run/udev:ro
+    env_file:
+      - ./.env
+    working_dir: /repo
+    ipc: host
+    pid: host
+    network_mode: host
+    privileged: true
+    environment:
+      - LIBUSB_DEBUG=0
+      - HOSTUSER=$USER
+      - DISPLAY=$DISPLAY
+      - RUNS_INSIDE_DOCKER=1
+
+  compile-gui-application:
+    <<: *qt5-cpp-image
+    command: >
+      bash -c "cmake -B build_docker && cmake --build build_docker -j8"
+
+  run-gui-application:
+    <<: *qt5-cpp-image
+    command: >
+      bash -c "./build_docker/charts_app_linux/app.sh"
