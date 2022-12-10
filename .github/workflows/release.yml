@@ -35,16 +35,11 @@ jobs:
         run: cmake -E make_directory ${{github.workspace}}/build
 
       - name: Configure CMake
-        # Use a bash shell so we can use the same syntax for environment variable
-        # access regardless of the host operating system
         shell: bash
-        # Note the current convention is to use the -S and -B options here to specify source
-        # and build directories, but this is only available with CMake 3.13 and higher.
         run: |
           pwd
-          VERSION_MAJOR=`sed -n '1p' VERSION | grep -oEi ":.*" | grep -oEi "[[:alnum:]]+"`
-          VERSION_MINOR=`sed -n '2p' VERSION | grep -oEi ":.*" | grep -oEi "[[:alnum:]]+"`
-          VERSION_ID=${MAJOR}.${MINOR}.${BUILD_NUMBER}
+          source .env
+          VERSION_ID=${VERSION_MAJOR}.${VERSION_MINOR}.${BUILD_NUMBER}
           echo "VERSION_MAJOR=${VERSION_MAJOR}" >> $GITHUB_ENV
           echo "VERSION_MINOR=${VERSION_MINOR}" >> $GITHUB_ENV
           echo "VERSION_ID=${VERSION_MAJOR}.${VERSION_MINOR}.${BUILD_NUMBER}" >> $GITHUB_ENV

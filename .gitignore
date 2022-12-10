@@ -1,2 +1,6 @@
 .idea
 cmake-build-debug
+build
+build_docker
+charts_app_linux
+charts_app_win
