@@ -13,21 +13,10 @@ class SdbChartController : public QObject
 {
     Q_OBJECT
 
-    void createRawChartWindow(QWidget* parent);
-    void destroyRawChartWindow() const;
-public slots:
-    void handleRawChartWindow(int state);
-
 public:
     SdbChartController(QObject* parent);
 
     SdbMainWindow* createChartWindow(SdbSettingsChartWindow* settings);
-
-    SdbMainWindow* pChartWindow;
-    SdbChartWidget* pChartWidget;
-
-    QVector<SdbMainWindow*> pChartWindows;
-    QVector<SdbChartWidget*> pChartWidgets;
 };
 
 #endif //APP_SDBCHARTCONTROLLER_H
