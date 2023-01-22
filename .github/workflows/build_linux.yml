@@ -41,6 +41,7 @@ jobs:
         run: |
           pwd
           ls -al
+          source .env
           VERSION_ID=${VERSION_MAJOR}.${VERSION_MINOR}.${BUILD_NUMBER}
           echo "VERSION_MAJOR=${VERSION_MAJOR}" >> $GITHUB_ENV
           echo "VERSION_MINOR=${VERSION_MINOR}" >> $GITHUB_ENV
