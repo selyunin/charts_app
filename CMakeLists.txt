@@ -56,6 +56,18 @@ add_executable(test WIN32
         src/chartview.cpp
         src/sdb_widgets/SdbMainWindow.cpp)
 
+add_executable(test_chart WIN32
+        test/test_chart.cpp
+        src/sdb_widgets/SdbChart.cpp
+        src/sdb_widgets/SdbMainWindow.cpp)
+
+
+add_executable(example_chart WIN32
+        test/example_chart.cpp
+        src/sdb_widgets/SdbChart.cpp
+        src/sdb_widgets/SdbMainWindow.cpp)
+
+
 find_library(LIBRARY_NAME PATHS ${CMAKE_PREFIX_PATH} NO_DEFAULT_PATH)
 
 if(WIN32)
@@ -64,6 +76,8 @@ if(WIN32)
 elseif(UNIX)
     target_link_libraries(${EXECUTABLE} Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::XcbQpa)
     target_link_libraries(test Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::XcbQpa Qt5::Test)
+    target_link_libraries(test_chart Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::XcbQpa Qt5::Test)
+    target_link_libraries(example_chart Qt5::Core Qt5::Gui Qt5::Widgets Qt5::DBus Qt5::Charts Qt5::XcbQpa)
 endif()
 
 if(WIN32)
